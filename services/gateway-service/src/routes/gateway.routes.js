@@ -29,7 +29,7 @@ function handleProxyReq(proxyReq, req, res, options) {
 router.use(
   "/auth",
   createProxyMiddleware({
-    target: "http://auth:8001",
+    target: "https://ps-auth-service.onrender.com",
     changeOrigin: true,
     pathRewrite: { "^/api/auth": "" },
     onProxyReq: handleProxyReq,
@@ -39,7 +39,7 @@ router.use(
 router.use(
   "/forum",
   createProxyMiddleware({
-    target: "http://forums:8012",
+    target: "https://ps-forums-service.onrender.com",
     changeOrigin: true,
     pathRewrite: {
       "^/api/forum": "", // Rewrite the path
@@ -51,7 +51,7 @@ router.use(
 router.use(
   "/post",
   createProxyMiddleware({
-    target: "http://post:8014",
+    target: "https://ps-post-service.onrender.com",
     changeOrigin: true,
     pathRewrite: {
       "^/api/post": "", // Rewrite the path
