@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  gateway:
+    build:
+      context: ./services/gateway-service
+      dockerfile: Dockerfile
+    env_file:
+      - ./services/gateway-service/.env
+    command: ["npm", "run", "dev"]
+    ports:
+      - "5000"
+    networks:
+      - default
+
+  auth:
+    build:
+      context: ./services/auth-service
+      dockerfile: Dockerfile
+    command: ["npm", "run", "dev"]
+    env_file:
+      - ./database/.env.db
+      - ./services/auth-service/.env
+    ports:
+      - "8001"
+    networks:
+      - default
+
+  forums:
+    build:
+      context: ./services/forums-service
+      dockerfile: Dockerfile
+    env_file:
+      - ./database/.env.db
+      - ./services/forums-service/.env
+    command: ["npm", "run", "dev"]
+    ports:
+      - "8012"
+    networks:
+      - default
+
+  post:
+    build:
+      context: ./services/post-service
+      dockerfile: Dockerfile
+    env_file:
+      - ./database/.env.db
+      - ./services/post-service/.env
+    command: ["npm", "run", "dev"]
+    ports:
+      - "8014"
+    networks:
+      - default
+
+volumes:
+  mongodb-data-node1:
+  mongodb-data-node2:
+  mongodb-data-node3:
+
+networks:
+  default:
+    driver: bridge
