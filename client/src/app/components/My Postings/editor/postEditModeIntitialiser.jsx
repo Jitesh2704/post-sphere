@@ -14,11 +14,11 @@ import Table from "@editorjs/table";
 import Warning from "@editorjs/warning";
 
 export const initEditor = (postContent) => {
-     console.log("this is inside editor", postContent);
+  console.log("this is inside editor", postContent);
   const editor = new EditorJS({
     holder: "editorjs",
     autofocus: true,
-    placeholder: "Start Writing Your Article Now...",
+    placeholder: "Start Writing Your Post Now...",
     onChange: async () => {
       let content = await editor.save();
       console.log(content);

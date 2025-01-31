@@ -29,7 +29,7 @@ const getAllPostLikes = async (
         sortOrder,  // Pass sortOrder to fetchData
       }
     });
-    return response;
+    return response.data;
   } catch (error) {
     console.error('Error fetching programs:', error);
     throw error;

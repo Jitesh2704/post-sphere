@@ -4,16 +4,16 @@ const currentYear = () => {
 
 const Footer = () => {
   return (
-    <footer className="text-center bg-sky-200 px-4 flex flex-row justify-between items-center">
+    <footer className="text-center bg-sky-300 px-4 flex flex-row justify-between items-center">
       <div className="p-2 text-center text-neutral-700">
         © {currentYear()} Copyright
       </div>
       <a
-        className="text-blue-700 text-xl font-bold"
-        href="https://chatfusion.chat"
+        className="text-blue-700 text-lg font-bold"
+        href="https://post-sphere.netlify.app/"
       >
         {" "}
-        CHAT FUSION
+        POST SPHERE
       </a>
     </footer>
   );

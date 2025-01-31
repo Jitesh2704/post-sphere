@@ -110,9 +110,9 @@ const ForgotPassword = () => {
             onSubmit={found ? handleSubmit : handleCheckRecord}
           >
             {found && (
-              <div className="w-full bg-green-100 border-2 border-green-300 py-2 px-3 text-green-500 font-medium rounded-md">
+              <div className="w-full bg-green-600 border-2 border-green-600 py-2 px-3 text-green-100 font-medium rounded-md">
                 <FontAwesomeIcon icon={faCircleCheck} className="mr-2" />
-                Account with given email Found!
+                Account with given Email Found!
               </div>
             )}
             <div>
@@ -130,7 +130,7 @@ const ForgotPassword = () => {
                   autoComplete="email"
                   placeholder="Enter Your Account Linked Email"
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-600 bg-gray-800 text-white placeholder-gray-400 rounded-md shadow-sm sm:text-sm"
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>

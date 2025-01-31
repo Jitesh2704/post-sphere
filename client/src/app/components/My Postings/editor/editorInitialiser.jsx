@@ -3,7 +3,7 @@ import Header from "@editorjs/header";
 import ListTool from "@editorjs/list";
 // import ImageTool from "@editorjs/image";
 import Quote from "@editorjs/quote";
-// import LinkTool from "@editorjs/link";
+import LinkTool from "@editorjs/link";
 import RawTool from "@editorjs/raw";
 import Checklist from "@editorjs/checklist";
 import Embed from "@editorjs/embed";
@@ -28,12 +28,12 @@ export const initEditor = () => {
         class: Header,
         inlineToolbar: true,
       },
-      // linkTool: {
-      //   class: LinkTool,
-      //   config: {
-      //     // endpoint: "http://localhost:8008/fetchUrl", // Your backend endpoint for url data fetching,
-      //   },
-      // },
+      linkTool: {
+        class: LinkTool,
+        config: {
+          // endpoint: "http://localhost:8008/fetchUrl", // Your backend endpoint for url data fetching,
+        },
+      },
       inlineCode: {
         class: InlineCode,
         shortcut: "CMD+SHIFT+M",

@@ -25,7 +25,7 @@ const TimeAgo = ({ date }) => {
     formattedDate = moment(parsedDate).format("YYYY MMM");
   }
 
-  return <span title={date}>{formattedDate}</span>;
+  return <span title={date}>Created {formattedDate}</span>;
 };
 
 export default TimeAgo;

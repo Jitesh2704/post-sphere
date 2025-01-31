@@ -59,8 +59,8 @@ const getAllAuthUsers = async (
   filterFields = {},
   search = "",
   searchFields = [],
-  sortField = "", 
-  sortOrder = "desc" 
+  sortField = "",
+  sortOrder = "desc"
 ) => {
   try {
     const response = await fetchData({

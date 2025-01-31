@@ -130,7 +130,7 @@ const Register = () => {
   };
 
   return (
-    <div className="">
+    <div className="bg-[#131520]">
       <div className="w-full grid grid-cols-6 md:grid-cols-12">
         <style>
           {`
@@ -172,13 +172,13 @@ const Register = () => {
                 }
                 `}
         </style>
-        <div className="col-span-6 flex flex-col justify-center items-center bg-sky-50 py-6 md:py-0">
-          <div className="flex flex-col md:flex-row lg:flex-col gap-1 justify-center items-center mb-8 md:mb-4 lg:mb-8">
+        <div className="col-span-6 flex flex-col justify-center items-center bg-[#131520] py-6 md:py-0">
+          <div className="flex flex-col md:flex-row lg:flex-col gap-1 justify-center items-center mb-4">
             <img
               loading="lazy"
               src={Logo}
               alt="Logo"
-              className="w-56 md:w-20 lg:w-56 object-cover"
+              className="w-20 object-cover"
             />
 
             <img
@@ -189,7 +189,7 @@ const Register = () => {
             />
           </div>
 
-          <h3 className="text-center text-blue-500 text-2xl lg:text-3xl font-semibold mb-6 md:mb-3 lg:mb-6">
+          <h3 className="text-center text-blue-500 text-2xl lg:text-3xl font-bold mb-6 md:mb-3 lg:mb-6">
             Create New Account
           </h3>
 
@@ -199,7 +199,7 @@ const Register = () => {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               <div>
-                <label className="text-sm font-medium text-gray-500">
+                <label className="text-sm font-medium text-gray-400">
                   First Name :
                 </label>
                 <input
@@ -212,7 +212,7 @@ const Register = () => {
                 />
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-500">
+                <label className="text-sm font-medium text-gray-400">
                   Last Name :
                 </label>
                 <input
@@ -225,7 +225,7 @@ const Register = () => {
                 />
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-500">
+                <label className="text-sm font-medium text-gray-400">
                   Username :
                 </label>
                 <input
@@ -242,7 +242,7 @@ const Register = () => {
                 )}
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-500">
+                <label className="text-sm font-medium text-gray-400">
                   Email Address:
                 </label>
                 <input
@@ -257,7 +257,7 @@ const Register = () => {
                 {emailError && <p className="error-message">{emailError}</p>}
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-500">
+                <label className="text-sm font-medium text-gray-400">
                   Password :
                 </label>
                 <input
@@ -274,7 +274,7 @@ const Register = () => {
                 )}
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-500">
+                <label className="text-sm font-medium text-gray-400">
                   Re-Enter Password :
                 </label>
                 <input

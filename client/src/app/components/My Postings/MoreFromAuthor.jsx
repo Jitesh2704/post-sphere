@@ -4,73 +4,38 @@ import { useParams } from "react-router-dom";
 import UserPostsService from "../../services/post-service/user-posts.service";
 import ArticlesList from "../My Postings/ArticleList";
 
-export default function MoreFromAuthor() {
+export default function MoreFromAuthor({ userId }) {
   const [author, setAuthor] = useState({});
   const [authorPosts, setAuthorPosts] = useState([]);
-  const { postId } = useParams();
 
   useEffect(() => {
     const fetchAuthorData = async () => {
       try {
-        // Get post details using postId
-        const postDetailsResponse = await PostsService.getPost({
-          post_id: postId,
-        });
-        const postDetails = postDetailsResponse.data;
-
-        console.log("step1", postDetails);
-
-        // Get the user ID who created the post
-        const createdBy = postDetails.created_by;
-
-        // Fetch all posts by the user
-        const userPostsResponse = await UserPostsService.getAllUserPosts({
-          user_id: createdBy,
+        const res = await PostsService.getAllPosts(1, 12, [], {
+          created_by: userId,
         });
 
-        const userPosts = userPostsResponse.data.map((post) => post.post_id);
-
-        console.log("step2", userPosts);
-
-        // Fetch details of all user posts
-        const postDetailsPromises = userPosts.map((postId) =>
-          PostsService.getPost({ post_id: postId })
-        );
-
-        const postDetailsResponses = await Promise.all(postDetailsPromises);
-
-        console.log("step3", postDetailsResponses);
-
-        // const userDetails = postDetailsResponses.map(
-        //   (response) => response.data
-        // );
-
-        const userDetails = postDetailsResponses
-          .map((response) => response.data)
-          .filter((userDetail) => userDetail.is_draft === false);
-
-        console.log(userDetails);
-
-        setAuthor(postDetails.post_author);
-        setAuthorPosts(userDetails);
+        setAuthor(res.data[0].post_author);
+        setAuthorPosts(res.data);
       } catch (error) {
         console.error(error);
-        // Handle error as needed
       }
     };
     fetchAuthorData();
-  }, [postId]);
+  }, [userId]);
 
   return (
-    <div className="bg-white min-h-screen">
-      {/* Author Profile Section */}
-      <div className="px-4 md:px-12 lg:px-28 xl:px-48 py-4 md:pb-12">
+    <div className="px-20 bg-[#131520]">
+      <div className="">
         <div className="grid grid-cols-12 ">
           <div className="order-1 md:order-1 col-span-2 md:col-span-1 p-2">
-            <div className="w-12 lg:w-16 h-12 lg:h-16 rounded-full overflow-hidden ml-3 md:ml-0 mt-3 lg:mt-2 xl:mt-1.5">
+            <div className="w-12 lg:w-20 h-12 lg:h-20 rounded-full overflow-hidden ml-3 md:ml-0 mt-3 lg:mt-2 xl:mt-1.5">
               <img
                 className="object-cover w-full h-full"
-                src={author.img}
+                src={
+                  author.img ||
+                  "https://i.pinimg.com/736x/21/20/b0/2120b058cb9946e36306778243eadae5.jpg"
+                }
                 alt={author.name + "Profile Image"}
               />
             </div>
@@ -79,30 +44,30 @@ export default function MoreFromAuthor() {
             <div className="flex flex-col">
               <div className="flex flex-row justify-start items-start gap-2">
                 <div className="font-semibold text-lg">{author.name}</div>
-                <div className="text-gray-150 text-md mt-0.5">
-                  {/* {authorPosts.} */}
-                </div>
+                <div className="text-gray-150 text-md mt-0.5"></div>
               </div>
               <div className="text-xs lg:text-sm">
-                Author profile descriptions Tips & Career Advice for UX/Product
-                Designers from a Principal Product Designer with 5+ years of
-                experience
+                As a passionate writer, I draw inspiration from everyday
+                moments, weaving them into stories that connect with people. My
+                journey into writing began in childhood, fueled by a love for
+                books and a curiosity about the world. I believe in the power of
+                words to inspire change and spark conversations. When I'm not
+                writing, you'll find me exploring nature or enjoying a good cup
+                of coffee.
               </div>
             </div>
           </div>
           <div className="order-2 md:order-3 col-span-10 md:col-span-1 ml-28 md:ml-2 xl:ml-20 lg:ml-8 pt-6 pb-0 md:py-6">
-            {/* <button className="w-28 h-10 text-lg font-semibold rounded-full bg-blue-500 text-white hover:text-blue-500 hover:bg-white hover:border border-blue-500">
+            <button className="w-28 h-10 text-lg font-semibold rounded-full bg-blue-500 text-white hover:text-blue-500 hover:bg-white hover:border border-blue-500">
               Follow
-            </button> */}
+            </button>
           </div>
         </div>
-        <div className="border-b border-gray-400 py-3 md:py-6"></div>
+        <div className="border-b border-gray-400 mt-2"></div>
       </div>
-      {/* More from Author Section */}
-      <div className="px-4 md:px-12 lg:px-28 xl:px-48 py-4">
-        <div className="font-semibold text-lg md:-mt-12">
-          More from {author.name}
-        </div>
+     
+      <div className="mt-6">
+        <div className="font-semibold text-lg">More from {author.name}</div>
         <ArticlesList data={authorPosts} />
         <div className="border-b border-gray-400 py-6"></div>
       </div>

@@ -96,7 +96,7 @@ const ArticlePostTemplate = ({ data }) => {
         });
         setIsBookmarked(true);
         localStorage.setItem(`bookmark_${data.post_id}`, true);
-      // }
+        // }
       } else {
         // If bookmarked, check if it's deleted
         const collection = await UserCollectionsService.getUserCollection({
@@ -153,7 +153,7 @@ const ArticlePostTemplate = ({ data }) => {
   };
 
   return (
-    <div className="max-w-screen-sm md:max-w-screen-md h-auto p-0.5 md:p-2">
+    <div className="w-full h-auto p-0.5 md:p-2">
       <div className="flex justify-start items-center space-x-2">
         <div className="w-10 h-10 rounded-full overflow-hidden">
           <img
@@ -180,17 +180,17 @@ const ArticlePostTemplate = ({ data }) => {
 
       <div className="grid grid-cols-12 gap-0 md:gap-5 my-3 md:my-2">
         <div className="col-span-12 md:col-span-7">
-          <div className="font-bold tracking-tight text-lg md:text-xl line-clamp-1">
+          <div className="font-bold tracking-tight text-lg md:text-xl">
             {data.post_name}
           </div>
-          <div className="py-1 tracking-tight my-0.5 md:my-3 line-clamp-3">
+          <div className="py-1 tracking-tight my-0.5 md:my-3">
             {data.post_short_desc}
           </div>
         </div>
         <div className="col-span-12 md:col-span-5">
           <div className="border m-2 md:m-0 h-36 w-auto xl:w-full xl:h-full">
             <img
-              className="object-cover h-full w-full"
+              className="object-cover h-fit w-full"
               src={data.post_img}
               alt="Post Image"
             />

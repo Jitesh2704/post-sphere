@@ -8,10 +8,23 @@ services:
     env_file:
       - ./services/gateway-service/.env
     command: ["npm", "run", "dev"]
+    develop:
+      watch:
+        - action: sync
+          path: ./services/gateway-service
+          target: /app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./services/gateway-service/package.json
     ports:
-      - "5000"
+      - 5000:5000
     networks:
-      - default
+      - POSTSPHERE
+    depends_on:
+      - auth
+      - post
+      - forums
 
   auth:
     build:
@@ -21,10 +34,23 @@ services:
     env_file:
       - ./database/.env.db
       - ./services/auth-service/.env
+    # environment:
+    #   DB_CONNECTION_STRING: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB_NAME}"
+    develop:
+      watch:
+        - action: sync
+          path: ./services/auth-service
+          target: /app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./services/auth-service/package.json
     ports:
-      - "8001"
+      - :8001
+    # depends_on:
+    #   - mongodb-node1
     networks:
-      - default
+      - POSTSPHERE
 
   forums:
     build:
@@ -33,11 +59,24 @@ services:
     env_file:
       - ./database/.env.db
       - ./services/forums-service/.env
+    # environment:
+    #   DB_CONNECTION_STRING: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB_NAME}"
     command: ["npm", "run", "dev"]
+    develop:
+      watch:
+        - action: sync
+          path: ./services/forums-service
+          target: /app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./services/forums-service/package.json
     ports:
-      - "8012"
+      - :8012
+    # depends_on:
+    #   - mongodb-node1
     networks:
-      - default
+      - POSTSPHERE
 
   post:
     build:
@@ -46,11 +85,24 @@ services:
     env_file:
       - ./database/.env.db
       - ./services/post-service/.env
+    # environment:
+    #   DB_CONNECTION_STRING: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB_NAME}"
     command: ["npm", "run", "dev"]
+    develop:
+      watch:
+        - action: sync
+          path: ./services/post-service
+          target: /app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./services/post-service/package.json
     ports:
-      - "8014"
+      - :8014
+    # depends_on:
+    #   - mongodb-node1
     networks:
-      - default
+      - POSTSPHERE
 
 volumes:
   mongodb-data-node1:
@@ -58,5 +110,67 @@ volumes:
   mongodb-data-node3:
 
 networks:
-  default:
+  POSTSPHERE:
     driver: bridge
+# version: "3.8"
+
+# services:
+#   gateway:
+#     build:
+#       context: ./services/gateway-service
+#       dockerfile: Dockerfile
+#     env_file:
+#       - ./services/gateway-service/.env
+#     command: ["npm", "run", "dev"]
+#     ports:
+#       - "5000"
+#     networks:
+#       - default
+
+#   auth:
+#     build:
+#       context: ./services/auth-service
+#       dockerfile: Dockerfile
+#     command: ["npm", "run", "dev"]
+#     env_file:
+#       - ./database/.env.db
+#       - ./services/auth-service/.env
+#     ports:
+#       - "8001"
+#     networks:
+#       - default
+
+#   forums:
+#     build:
+#       context: ./services/forums-service
+#       dockerfile: Dockerfile
+#     env_file:
+#       - ./database/.env.db
+#       - ./services/forums-service/.env
+#     command: ["npm", "run", "dev"]
+#     ports:
+#       - "8012"
+#     networks:
+#       - default
+
+#   post:
+#     build:
+#       context: ./services/post-service
+#       dockerfile: Dockerfile
+#     env_file:
+#       - ./database/.env.db
+#       - ./services/post-service/.env
+#     command: ["npm", "run", "dev"]
+#     ports:
+#       - "8014"
+#     networks:
+#       - default
+
+# volumes:
+#   mongodb-data-node1:
+#   mongodb-data-node2:
+#   mongodb-data-node3:
+
+# networks:
+#   default:
+#     driver: bridge

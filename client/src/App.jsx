@@ -11,6 +11,12 @@ import LoginComponent from "./app/pages/Login.jsx";
 import Register from "./app/pages/Register.jsx";
 import "./App.css";
 import ForgotPassword from "./app/pages/ForgotPassword.jsx";
+import NotFound from "./app/pages/NotFound.jsx";
+import Home from "./app/pages/Home.jsx";
+import EditorComponent from "./app/components/My Postings/editor/EditorComponent.jsx";
+import ReadPost from "./app/pages/My Postings/ReadPost.jsx";
+import Account from "./app/pages/Account.jsx";
+import PostEditor from "./app/pages/My Postings/PostEditor.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,9 +53,14 @@ function App() {
           element={!isLoggedIn ? <LoginComponent /> : <Navigate to="/" />}
         />
 
+        <Route path="/home" element={<Home />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/view/:postId" element={<ReadPost />} />
+        <Route path="/editor/:postId" element={<EditorComponent />} />
+        <Route path="/edit-content/:postId" element={<PostEditor />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
-        <Route path="*" element={<>Not Found!!</>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
