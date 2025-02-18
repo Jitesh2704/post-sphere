@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = `${import.meta.env.VITE_REACT_APP_HOST}forum/forums/`;
+const API_URL = `${import.meta.env.VITE_REACT_APP_FORUMS_HOST}forums/`;
 import fetchData from "../../utils/queryBuilder";
 
 const user = JSON.parse(localStorage.getItem("user"));

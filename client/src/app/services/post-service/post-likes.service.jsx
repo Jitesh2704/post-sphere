@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = `${import.meta.env.VITE_REACT_APP_HOST}post/postLikes/`;
+const API_URL = `${import.meta.env.VITE_REACT_APP_POST_HOST}postLikes/`;
 import fetchData from "../../utils/queryBuilder";
 
 const user = JSON.parse(localStorage.getItem('user'))

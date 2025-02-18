@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = `${import.meta.env.VITE_REACT_APP_HOST}forum/replies/`;
+const API_URL = `${import.meta.env.VITE_REACT_APP_FORUMS_HOST}replies/`;
 // const API_URL = "api.upmymind.in/api/forum/replies/";
 import fetchData from "../../utils/queryBuilder";
 
